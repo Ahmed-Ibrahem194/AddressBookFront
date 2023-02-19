@@ -1,0 +1,27 @@
+<div class="container">
+<div class="row">
+<div *ngIf="service.errorMessage" class="alert alert-danger">{{ service.errorMessage }}</div>
+<form class="col-md-6" #myForm = "ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text"  name="fullName" id="fullName" class="form-control" [(ngModel)]="book.fullName" required>
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text"  name="phoneNumber" id="phoneNumber" class="form-control" [(ngModel)]="book.phoneNumber" required>
+        <label for="fullName">Address</label>
+        <input type="text"  name="address" id="address" class="form-control" [(ngModel)]="book.address" required>
+        <label for="imageUrl">Image</label>
+        <input type="file"  name="image" id="image" class="form-control" [(ngModel)]="book.imageUrl" required>
+        <label for="age">Age</label>
+        <input type="text"  name="age" id="age" class="form-control" [(ngModel)]="book.age" required>
+        <label for="birthOfDate">Birth Of Date</label>
+        <input type="text"  name="birthOfDate" id="birthOfDate" class="form-control" [(ngModel)]="book.birthOfDate" required>
+        <label for="job">Job</label>
+        <ng-select [items]="jobService.job!" [multiple]="true" bindValue="id" bindLabel="DepName" [(ngModel)]="depService.department"></ng-select>
+        <label for="department">Department</label>
+        <ng-select [items]="depService.department!" [multiple]="true" bindValue="id" bindLabel="jobTitle" [(ngModel)]="jobService.job"></ng-select>
+    
+    </div>
+    <input type="submit" class="btn btn-outline-primary" value="Save">
+</form>
+</div>
+</div>

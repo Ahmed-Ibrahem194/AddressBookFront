@@ -1,0 +1,49 @@
+<div class="container">
+    <button class="btn btn-outline-primary mb-3" (click)="goToJobItemComponent()">Create New Job</button>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Job Title</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>   
+            <tr *ngFor = "let item of jobService.job">
+            <td>{{"item!.Title"}}</td>
+            <td>
+                <button class="btn btn-outline-secondary"(click)="openEditDialog(item)">Edit</button>
+                |<button class="btn btn-outline-danger"(click)="deleteJob()">Delete</button>
+           </td>
+            </tr>                     
+        </tbody>
+      </table>     
+</div>
+
+<ng-template #editForm>
+  <form>
+    <div class="form-group">
+      <label for="jobTitle">Job Title</label>
+      <input [(ngModel)]="job!.jobTitle" name="jobTitle" id="jobTitle" class="form-control" />
+    </div>
+  </form>
+</ng-template>
+
+<!--
+<ngb-modal #editModal>
+  <ng-template ngbModalHeader>
+    Edit Job
+  </ng-template>
+  <ng-template ngbModalBody>
+    <ng-container *ngTemplateOutlet="editForm"></ng-container>
+  </ng-template>
+  <ng-template ngbModalFooter>
+    <button (click)="editModal.close()" class="btn btn-secondary">Cancel</button>
+    <button (click)="updateJob()" class="btn btn-primary">Save Changes</button>
+  </ng-template>
+</ngb-modal>
+-->
+
+
+
+
+

@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+<div *ngIf="departmentService.errorMessage" class="alert alert-danger">{{ departmentService.errorMessage }}</div>
+<form class="col-md-6" #myForm = "ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="jobTitle">Depatment Name</label>
+        <input type="text" required name="DepName" id="DepName" class="form-control" [(ngModel)]="department.depName">
+    </div>
+    <input type="submit" class="btn btn-outline-primary" value="Save">
+</form>
+</div>
+</div>

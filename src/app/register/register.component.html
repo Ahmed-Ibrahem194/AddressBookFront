@@ -1,0 +1,19 @@
+<div class="container">
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" name="email" [(ngModel)]="email" class="form-control">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" [(ngModel)]="password" class="form-control">
+    </div>
+    <div>
+        <label for="Confirm Password">Password:</label>
+        <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword!" class="form-control">
+      </div>
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+

@@ -1,0 +1,77 @@
+<div class="container">
+    <button class="btn btn-outline-primary mb-3 mr-5" (click)="goToBookItemComponent()">Create New Book</button>
+    <button class="btn btn-outline-success mb-3 ml-5" (click)="exportTableToExcel('tableId', 'myData')">Export To Excel</button>   
+    <table class="table" id="tableId">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Address</th>
+            <th scope="col">Image</th>
+            <th scope="col">age</th>
+            <th scope="col">Birth Of Date</th>
+            <th scope="col">Department</th>
+            <th scope="col">Job</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>   
+            <tr *ngFor = "let item of service.addresBook">
+            <td>{{"item!.fullName"}}</td>
+            <td>{{"item!.phoneNumber"}}</td>
+            <td>{{"item!.address"}}</td>
+            <td>{{"item!.imageUrl"}}</td>
+            <td>{{"item!.age"}}</td>
+            <td>{{"item!.birthOfDate"}}</td>
+            <td>{{"item!.department"}}</td>
+            <td>{{"item!.job"}}</td>
+            <td>
+                <button class="btn btn-outline-secondary"(click)="openEditDialog(item)">Edit</button>
+                |<button class="btn btn-outline-danger"(click)="deleteJob()">Delete</button>
+           </td>
+            </tr>                     
+        </tbody>
+      </table>     
+</div>
+
+<ng-template #editForm>
+  <form>
+    <div class="form-group">
+      <label for="fullName">Address Book</label>
+      <input [(ngModel)]="addresBook!.fullName" name="fullName" id="fullName" class="form-control" />
+      <label for="phoneNumber">Phone Number</label>      
+      <input [(ngModel)]="addresBook!.phoneNumber" name="phoneNumber" id="phoneNumber" class="form-control" />
+      <label for="address">Address</label>           
+      <input [(ngModel)]="addresBook!.address" name="address" id="address" class="form-control" />
+      <label for="imageUrl">Image</label>              
+      <input [(ngModel)]="addresBook!.imageUrl" name="imageUrl" id="imageUrl" class="form-control" />
+      <label for="age">Age</label>                    
+      <input [(ngModel)]="addresBook!.age" name="age" id="age" class="form-control" />
+      <label for="birthOfDate">Birth Of Date</label>     
+      <input [(ngModel)]="addresBook!.birthOfDate" type="text" class="form-control" id="datepicker" name="datepicker">      
+      <label for="department">Department</label>                             
+      <ng-select [items]="jobService.job!" [multiple]="true" bindValue="id" bindLabel="DepName" [(ngModel)]="depService.department"></ng-select>
+      <label for="job">Job</label>                         
+      <ng-select [items]="depService.department!" [multiple]="true" bindValue="id" bindLabel="jobTitle" [(ngModel)]="jobService.job"></ng-select>
+    </div>
+  </form>
+</ng-template>
+
+<ngb-modal #editModal>
+  <ng-template ngbModalHeader>
+    Edit Job
+  </ng-template>
+  <ng-template ngbModalBody>
+    <ng-container *ngTemplateOutlet="editForm"></ng-container>
+  </ng-template>
+  <ng-template ngbModalFooter>
+    <button (click)="editModal.close()" class="btn btn-secondary">Cancel</button>
+    <button (click)="updateJob()" class="btn btn-primary">Save Changes</button>
+  </ng-template>
+</ngb-modal>
+
+
+
+
+
+
